@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="1.5"
+        android:background="#090D12">
 
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="168dp"
             android:layout_height="79dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +28,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8">
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:background="#090D12">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -35,7 +38,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="아이디(이메일)"
+            android:backgroundTint="@android:color/darker_gray"
+            android:hint="아이디"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +51,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:backgroundTint="@android:color/darker_gray"
             android:hint="비밀번호"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="@+id/textInputEditText2"
             app:layout_constraintStart_toStartOf="@+id/textInputEditText2"
             app:layout_constraintTop_toBottomOf="@+id/textInputEditText2" />
@@ -62,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="395dp" />
+            app:layout_constraintGuide_percent="0.96107054" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -71,7 +80,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="로그인"
-            app:backgroundTint="#D6CFCF"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="#3F3FFF"
             app:layout_constraintEnd_toEndOf="@+id/textInputEditText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -83,11 +94,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="회원가입"
-            android:textColor="#1B1919"
+            android:textColor="@android:color/darker_gray"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/materialButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <include layout="@layout/nav_bottom"/>
 
 </LinearLayout>
