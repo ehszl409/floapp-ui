@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flochart_musicBox"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_floChart_jacket"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_iu" />
+
+        <TextView
+            android:id="@+id/tv_floChart_rank"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_floChart_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_floChart_title"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket" />
+
+        <TextView
+            android:id="@+id/tv_floChart_title"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="Celebrity"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_floChart_singer"
+            app:layout_constraintEnd_toEndOf="@+id/tv_floChart_singer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_floChart_singer"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:text="아이유 (IU)"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket"
+            app:layout_constraintTop_toBottomOf="@+id/tv_floChart_title" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flochart_musicBox2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_floChart_jacket2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_iu" />
+
+        <TextView
+            android:id="@+id/tv_floChart_rank2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_floChart_title2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_floChart_title2"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket2" />
+
+        <TextView
+            android:id="@+id/tv_floChart_title2"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="Celebrity"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_floChart_singer2"
+            app:layout_constraintEnd_toEndOf="@+id/tv_floChart_singer2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_floChart_singer2"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:text="아이유 (IU)"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_floChart_title2" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flochart_musicBox3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_floChart_jacket3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_iu" />
+
+        <TextView
+            android:id="@+id/tv_floChart_rank3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_floChart_title3"
+            app:layout_constraintEnd_toStartOf="@+id/tv_floChart_title3"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket3" />
+
+        <TextView
+            android:id="@+id/tv_floChart_title3"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="Celebrity"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_floChart_singer3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_floChart_singer3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_floChart_singer3"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:text="아이유 (IU)"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_floChart_title3" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flochart_musicBox4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_floChart_jacket4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_iu" />
+
+        <TextView
+            android:id="@+id/tv_floChart_rank4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_floChart_title4"
+            app:layout_constraintEnd_toStartOf="@+id/tv_floChart_title4"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket4" />
+
+        <TextView
+            android:id="@+id/tv_floChart_title4"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="Celebrity"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_floChart_singer4"
+            app:layout_constraintEnd_toEndOf="@+id/tv_floChart_singer4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_floChart_singer4"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:text="아이유 (IU)"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket4"
+            app:layout_constraintTop_toBottomOf="@+id/tv_floChart_title4" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flochart_musicBox5"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_floChart_jacket5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_iu" />
+
+        <TextView
+            android:id="@+id/tv_floChart_rank5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_floChart_title5"
+            app:layout_constraintEnd_toStartOf="@+id/tv_floChart_title5"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket5" />
+
+        <TextView
+            android:id="@+id/tv_floChart_title5"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="Celebrity"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_floChart_singer5"
+            app:layout_constraintEnd_toEndOf="@+id/tv_floChart_singer5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_floChart_singer5"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:text="아이유 (IU)"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_floChart_jacket5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_floChart_title5" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
