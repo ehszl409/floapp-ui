@@ -4,21 +4,25 @@
     <item
         android:id="@+id/bottom_homepage"
         android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="@color/white"
         android:title="홈" />
 
     <item
         android:id="@+id/bottom_tourpage"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_glyph_regular_eye_slash"
         android:title="둘러보기"/>
 
 
     <item
         android:id="@+id/bottom_searchpage"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="검색" />
 
     <item
         android:id="@+id/bottom_storagepage"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_glyph_solid_database"
         android:title="보관함" />
 

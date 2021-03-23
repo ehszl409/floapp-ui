@@ -43,6 +43,8 @@ public class TourFragment extends Fragment {
         tabs.getTabAt(3);
 
 
+
+
         return view;
     }
 }

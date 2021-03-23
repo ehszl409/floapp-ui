@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="1"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:textColor="#3F3FFF"
+        android:background="#090D12"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:text="임영웅"
+        android:textColor="#FFFF"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:background="#090D12"/>
+
+
+
+</LinearLayout>

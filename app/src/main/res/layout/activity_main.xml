@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--#090D12-->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:background="#ED000000"
@@ -17,11 +18,5 @@
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navi"
-        app:menu="@menu/bottom_navigation_menu"
-        app:labelVisibilityMode="unlabeled"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+    <include layout="@layout/bottom_navigation"/>
 </LinearLayout>
