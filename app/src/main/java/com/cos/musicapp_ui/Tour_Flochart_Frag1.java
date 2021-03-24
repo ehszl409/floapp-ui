@@ -1,6 +1,5 @@
 package com.cos.musicapp_ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ public class Tour_Flochart_Frag1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tourpage_flochart_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_tourpage_flochart1, container, false);
 
         Bundle bundle = getArguments();
        ;

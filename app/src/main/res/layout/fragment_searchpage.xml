@@ -29,20 +29,21 @@
             app:layout_constraintGuide_end="20dp" />
 
 
-
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_marginTop="20dp"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/input_edit_text"
             android:drawableLeft="@drawable/ic_search"
+            android:drawableTint="#606060"
             android:hint="검색어를 입력하세요."
             android:paddingLeft="10dp"
-            android:textStyle="bold"
             android:textColorHint="#606060"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -69,7 +70,7 @@
             app:layout_constraintGuide_end="20dp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_soaring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="급상승 검색"

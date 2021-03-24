@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_storage_btn_area"
     android:background="#090D12"
     android:layout_margin="20dp"
     android:layout_height="80dp">
@@ -35,11 +36,11 @@
         android:text="리스트1 입니다."
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintStart_toEndOf="@+id/riv_player"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/roundedImageView"
+        android:id="@+id/riv_player"
 
         android:layout_width="80dp"
         android:layout_height="80dp"

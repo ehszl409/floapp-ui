@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flochart_musicBox"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -70,6 +71,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flochart_musicBox2"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -131,6 +133,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flochart_musicBox3"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -192,6 +195,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flochart_musicBox4"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -253,6 +257,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flochart_musicBox5"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">

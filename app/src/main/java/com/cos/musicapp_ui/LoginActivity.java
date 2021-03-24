@@ -3,10 +3,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,10 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView tvJoinForm;
-    private TextView tvMainPage;
-    private FrameLayout fragmentContainer;
+
     private Context mContext = LoginActivity.this;
-    private HomeFragment homeFragment;
+    private ImageView ivBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +28,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loginpage);
 
         tvJoinForm = findViewById(R.id.tv_joinform);
-        tvMainPage = findViewById(R.id.tv_mainpage);
-        fragmentContainer = findViewById(R.id.fragment_container);
-        homeFragment = new HomeFragment();
+        ivBack = findViewById(R.id.iv_back);
 
-        tvMainPage.setOnClickListener(v -> {
-            replaceFrag(homeFragment);
+
+
+        // 뒤로가기
+        ivBack.setOnClickListener(v -> {
+            onBackPressed();
         });
 
+
+        // 회원가입 페이지로 가기
         tvJoinForm.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, JoinActivity.class);
             startActivity(intent);
@@ -40,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
+    // 액비티비에서 프래그먼트로 이동하기 함수 (미구현)
     public void replaceFrag(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -3,9 +3,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-public class JoinActivity extends AppCompatActivity {
+public class PlayListActivity extends AppCompatActivity {
 
     private ImageView ivBack;
 
@@ -13,7 +12,7 @@ public class JoinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_joinpage);
+        setContentView(R.layout.activity_music_playlist);
 
 
         ivBack = findViewById(R.id.iv_back);
