@@ -17,8 +17,6 @@ public class StorageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        String str = getArguments().getString("editText");
-        Log.d(TAG, "번들 확인 : " + str);
         View view = inflater.inflate(R.layout.storagepage_fragment, container, false);
         return view;
     }
