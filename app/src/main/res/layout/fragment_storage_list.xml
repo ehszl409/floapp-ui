@@ -16,7 +16,7 @@
 
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/roundedImageView"
+            android:id="@+id/iv_song_art"
 
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -51,7 +51,7 @@
             android:textColor="@color/white"
             android:textSize="17dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+            app:layout_constraintStart_toEndOf="@+id/iv_song_art"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

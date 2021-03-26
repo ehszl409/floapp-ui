@@ -38,6 +38,26 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.github.gmazzo:fontawesome:0.4'
+
+    // 레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    // 롬복
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+    // 글라이드
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // 버스
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+    // 뭐지...??
+    def lifecycle_version = "2.2.0";
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 }

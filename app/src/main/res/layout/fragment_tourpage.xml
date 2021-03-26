@@ -76,7 +76,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_song_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+      <!--  <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_floChart"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -98,7 +103,7 @@
             app:tabPaddingEnd="6dp"
             android:translationZ="1dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"/>-->
     </LinearLayout>
 
     <include layout="@layout/mini_player"/>

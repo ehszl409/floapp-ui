@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.cos.musicapp_ui.view.main.MainActivity;
+
 public class SearchFragment extends Fragment {
         private ImageView ivPlayList;
         private ConstraintLayout layoutPlayerBtnArea;

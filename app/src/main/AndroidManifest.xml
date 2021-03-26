@@ -12,9 +12,10 @@
         <activity android:name=".MusicPlayerActivity"/>
         <activity android:name=".MusicPlayListActivity"/>
         <activity android:name=".ProfileActivity"/>
-        <activity android:name=".JoinActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.login.JoinActivity"/>
+        <activity android:name=".view.login.LoginActivity"/>
+        <activity android:name=".view.main.MainActivity"/>
+        <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

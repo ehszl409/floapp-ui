@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#090D12"
     android:layout_width="match_parent"
+    android:layout_height="60dp"
     android:layout_margin="20dp"
-    android:layout_height="60dp">
+    android:background="#090D12">
 
 
     <TextView
         android:id="@+id/tv_song_artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray"
         android:text="애쉬아일랜드"
+        android:textColor="@android:color/darker_gray"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@+id/tv_song_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_song_title" />
@@ -22,29 +22,20 @@
         android:id="@+id/tv_song_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="13dp"
+        android:layout_marginLeft="10dp"
         android:text="멜로디"
-        app:layout_constraintStart_toEndOf="@+id/iv_song_art"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/tv_song_id"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_more"
-        app:tint="@color/white" />
 
     <ImageView
         android:id="@+id/iv_song_play"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_play"
         app:tint="@color/white" />
@@ -58,5 +49,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="5dip" />
+
+    <TextView
+        android:id="@+id/tv_song_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_song_art"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

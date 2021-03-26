@@ -1,9 +1,11 @@
-package com.cos.musicapp_ui;
+package com.cos.musicapp_ui.view.login;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.cos.musicapp_ui.R;
 
 public class JoinActivity extends AppCompatActivity {
 
