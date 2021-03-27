@@ -47,10 +47,10 @@ public class SearchFragment extends Fragment {
             startActivity(intent);
         });
 
-        tvSoaring = view.findViewById(R.id.tv_soaring);
-        tvSoaring.setOnClickListener(v -> {
-            ((MainActivity)getActivity()).replace(SearchResultFragment.newInstance());
-        });
+//        tvSoaring = view.findViewById(R.id.tv_soaring);
+//        tvSoaring.setOnClickListener(v -> {
+//            ((MainActivity)getActivity()).replace(SearchResultFragment.newInstance());
+//        });
         return view;
     }
 }

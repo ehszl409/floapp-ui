@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_search"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,99 +36,213 @@
             android:drawableTint="#606060"
             android:hint="검색어를 입력하세요."
             android:paddingLeft="10dp"
-            android:textColorHint="#606060"
             android:textColor="@color/white"
+            android:textColorHint="#606060"
             android:textStyle="bold"
+            android:translationZ="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:translationZ="0dp"
+            app:srcCompat="@drawable/background"
+            tools:layout_editor_absoluteX="93dp"
+            tools:layout_editor_absoluteY="134dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#CC090D12"
+            android:translationZ="1dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/sb_mini_player"
+                android:layout_width="450dp"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/seekbar_thumb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_player_btn_area"
+                android:layout_width="190dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="멜로디"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline89"
+                app:layout_constraintTop_toTopOf="@+id/layout_player_btn_area" />
+
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="애쉬아일랜드"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline89"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@+id/layout_player_btn_area"
+                app:layout_constraintTop_toTopOf="@+id/imageView27"
+                app:srcCompat="@drawable/ic_skip_previous"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/iv_mini_player_play"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView27"
+                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toBottomOf="@+id/sb_mini_player"
+                app:srcCompat="@drawable/ic_play"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/imageView27"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_playlist"
+                app:layout_constraintTop_toBottomOf="@+id/sb_mini_player"
+                app:srcCompat="@drawable/ic_skip_next"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/iv_playlist"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app:layout_constraintTop_toBottomOf="@+id/sb_mini_player"
+                app:srcCompat="@drawable/ic_playlist"
+                app:tint="@color/white" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:background="#090D12">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="7"-->
+<!--        android:background="#090D12">-->
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline60"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline60"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintGuide_begin="20dp" />-->
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="20dp" />
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline22"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintGuide_end="20dp" />-->
 
-        <TextView
-            android:id="@+id/tv_soaring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="급상승 검색"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/guideline60"
-            app:layout_constraintTop_toTopOf="@+id/guideline23" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_soaring"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="급상승 검색"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="25dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline60"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/guideline23" />-->
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2021.03.09 20:00 기준"
-            android:textColor="#b2b2b2"
-            app:layout_constraintEnd_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="@+id/guideline23" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView6"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2021.03.09 20:00 기준"-->
+<!--            android:textColor="#b2b2b2"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline22"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/guideline23" />-->
 
-        <LinearLayout
-            android:paddingTop="50dp"
-            android:orientation="vertical"
-            android:layout_width="370dp"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline22"
-            app:layout_constraintStart_toStartOf="@+id/guideline60">
+<!--        <LinearLayout-->
+<!--            android:paddingTop="50dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="370dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline22"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline60">-->
 
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
-            <include layout="@layout/item_soaring_search"/>
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
+<!--            <include layout="@layout/item_soaring_search"/>-->
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-        실제는 리사이클러뷰를 통해서 리스트를 뿌린다<!--
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline22"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/guideline21"
-            app:layout_constraintTop_toTopOf="@+id/guideline23" >
-        </androidx.recyclerview.widget.RecyclerView>
--->
+<!--      -->
+<!--&ndash;&gt;-->
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="0dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline23"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintGuide_begin="0dp" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <include layout="@layout/mini_player"/>
+
 
 
 

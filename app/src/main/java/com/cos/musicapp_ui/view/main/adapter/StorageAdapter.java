@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +56,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-     private AppCompatImageView ivStorageAdd;
+
      private RoundedImageView ivStorageViewArt;
      private TextView tvStorageTitle;
      private TextView tvStorageSongCount;
@@ -63,11 +64,14 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivStorageAdd = itemView.findViewById(R.id.iv_storage_add);
+
             ivStorageViewArt = itemView.findViewById(R.id.iv_storage_view_art);
             tvStorageTitle = itemView.findViewById(R.id.tv_storage_title);
             tvStorageSongCount = itemView.findViewById(R.id.tv_storage_song_count);
             ivStoragePlay = itemView.findViewById(R.id.iv_song_play);
+
+
+
 
 
         }

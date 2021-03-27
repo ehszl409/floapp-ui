@@ -16,15 +16,7 @@
         android:paddingHorizontal="10dp">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_more"
-            app:tint="@color/white" />
+
 
         <ImageView
             android:id="@+id/iv_back"

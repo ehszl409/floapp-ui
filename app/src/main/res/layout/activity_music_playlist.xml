@@ -17,19 +17,12 @@
         android:background="#090D12"
         android:orientation="vertical">
 
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
-
-        <include layout="@layout/item_storage_list" />
+      <include layout="@layout/item_playlist"/>
+      <include layout="@layout/item_playlist"/>
+      <include layout="@layout/item_playlist"/>
+      <include layout="@layout/item_playlist"/>
+      <include layout="@layout/item_playlist"/>
+      <include layout="@layout/item_playlist"/>
 
 
     </LinearLayout>

@@ -34,18 +34,19 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_more"
-        app:tint="@color/white" />
+        app:srcCompat="@drawable/ic_delete"
+        app:tint="@android:color/darker_gray" />
 
     <ImageView
         android:id="@+id/iv_song_play"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent"

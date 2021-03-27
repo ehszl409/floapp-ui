@@ -3,6 +3,7 @@ package com.cos.musicapp_ui.view.main.frag;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +28,7 @@ import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +43,11 @@ public class FragStorage extends Fragment {
 
     private RecyclerView rvStorage;
     private StorageAdapter storageAdapter;
+
+    // 보관함에서 띄우는 다이얼 객체들
+    private AppCompatImageView ivStorageAdd;
+    private TextView tvDialogCancel, tvDialogComfirm;
+    private TextInputEditText tiDialogTitle;
 
 
 
@@ -58,6 +67,39 @@ public class FragStorage extends Fragment {
         rvStorage.setLayoutManager(manager);
         storageAdapter = new StorageAdapter(storages);
         rvStorage.setAdapter(storageAdapter);
+
+        // ************* 보관함 다이얼 띄우기 ******************//
+        ivStorageAdd = view.findViewById(R.id.iv_storage_add);
+        ivStorageAdd.setOnClickListener(v -> {
+            Log.d(TAG, "클릭 이벤트 작동");
+            View dialog = v.inflate(v.getContext(), R.layout.item_dialog_storage, null);
+            AlertDialog.Builder dlg = new AlertDialog.Builder(v.getContext());
+            dlg.setView(dialog);
+
+            final AlertDialog alertDialog = dlg.create();
+            alertDialog.show();
+
+            tiDialogTitle = dialog.findViewById(R.id.ti_dialog_title);
+            tvDialogCancel = dialog.findViewById(R.id.tv_dialog_cancel);
+            tvDialogCancel.setOnClickListener(v1 -> {
+                Log.d(TAG, "다이얼 취소 버튼 클릭 됨.");
+
+                alertDialog.dismiss();
+            });
+
+            tvDialogComfirm = dialog.findViewById(R.id.tv_dialog_confirm);
+            tvDialogComfirm.setOnClickListener(v1 -> {
+                Log.d(TAG, "다이얼 확인 버튼 클릭 됨.");
+                String title = tiDialogTitle.getText().toString();
+
+                storages.add(new Storage(2,title,2,null));
+                alertDialog.dismiss();
+            });
+
+
+        });
+        // ************* 보관함 다이얼 띄우기 ******************//
+
 
 
 
