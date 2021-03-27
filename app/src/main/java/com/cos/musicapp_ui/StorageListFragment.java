@@ -15,10 +15,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.frag.FragStorage;
 
 public class StorageListFragment extends Fragment implements MainActivity.OnBackPressedListener {
 
-    private StorageFragment storageFragment;
+    private FragStorage storageFragment;
     private ImageView ivPlayList;
     private ConstraintLayout layoutPlayerBtnArea;
     private ImageView ivBack;
@@ -53,7 +54,7 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
         ivBack = view.findViewById(R.id.iv_back);
 
-        storageFragment = new StorageFragment();
+        storageFragment = new FragStorage();
 
         // 뒤로가기
         ivBack.setOnClickListener(v -> {

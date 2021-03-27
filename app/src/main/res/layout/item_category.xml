@@ -8,7 +8,7 @@
     android:background="#090D12">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/riv_player"
+        android:id="@+id/iv_storage_view_art"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"

@@ -23,6 +23,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_storage_add"
                 android:layout_width="100dp"
                 android:layout_height="57dp"
                 android:layout_marginLeft="20dp"
@@ -42,14 +43,10 @@
 
         </LinearLayout>
 
-        <!--이부분은 리사이클러뷰가 들어와야합니다.-->
-        <include layout="@layout/item_storage" />
-
-        <include layout="@layout/item_storage" />
-
-        <include layout="@layout/item_storage" />
-
-        <include layout="@layout/item_storage" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_storage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>

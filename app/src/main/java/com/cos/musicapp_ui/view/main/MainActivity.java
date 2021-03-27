@@ -24,7 +24,7 @@ import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragHome;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchFragment;
-import com.cos.musicapp_ui.StorageFragment;
+import com.cos.musicapp_ui.view.main.frag.FragStorage;
 import com.cos.musicapp_ui.view.main.frag.FragTour;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     selectedFragment = new SearchFragment();
                     break;
                 case R.id.bottom_storagepage:
-                    selectedFragment = new StorageFragment();
+                    selectedFragment = new FragStorage();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvSongTitle = findViewById(R.id.tv_song_title);
         //******* tour 음악 리스트 선언 *********
 
-        // ******* 음악 재생하기 *******
+        // ******* 음악 재생하기(미구현) *******
         sbMiniPlayer = findViewById(R.id.sb_mini_player);
         sbMainPlayer = findViewById(R.id.sb_main_player);
         ivMiniPlayerPlay = findViewById(R.id.iv_mini_player_play);

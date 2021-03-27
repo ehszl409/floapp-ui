@@ -108,7 +108,7 @@
             app:tint="@color/white" />
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/riv_player"
+            android:id="@+id/iv_storage_view_art"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ashisland_melody"
@@ -133,7 +133,7 @@
             android:id="@+id/imageView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/riv_player"
+            app:layout_constraintEnd_toStartOf="@+id/iv_storage_view_art"
             app:layout_constraintStart_toEndOf="@+id/imageView25"
             app:layout_constraintTop_toTopOf="@+id/imageView24"
             app:srcCompat="@drawable/ic_shuffle"

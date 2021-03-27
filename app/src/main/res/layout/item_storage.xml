@@ -9,7 +9,7 @@
     android:layout_height="80dp">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_storage_play"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:tint="@color/white"
@@ -19,16 +19,16 @@
         app:srcCompat="@drawable/ic_play" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tv_storage_song_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="4곡"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintStart_toStartOf="@+id/tv_storage_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_storage_title" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_storage_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -36,11 +36,11 @@
         android:text="리스트1 입니다."
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/riv_player"
+        app:layout_constraintStart_toEndOf="@+id/iv_storage_view_art"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/riv_player"
+        android:id="@+id/iv_storage_view_art"
 
         android:layout_width="80dp"
         android:layout_height="80dp"
