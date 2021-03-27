@@ -61,6 +61,7 @@ public class MainActivityViewModel extends ViewModel {
 //        mtPlayList.setValue(playList);
 //    }
 
+    // 구독을 위한 함수.
     public MutableLiveData<List<Song>> subscribe() {
         return mtSongList;
     }
@@ -69,6 +70,7 @@ public class MainActivityViewModel extends ViewModel {
         return mtPlayList;
     }
 
+    // 음악 데이터를 모두 가져오는 함수.
     public void findAll() {
         songRepository.fetchAllSong();
     }

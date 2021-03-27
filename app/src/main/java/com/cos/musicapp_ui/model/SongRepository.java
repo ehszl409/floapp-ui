@@ -46,6 +46,7 @@ public class SongRepository {
     }
 
 
+    // 레트로핏으로 서버에서 데이터를 받아옵니다.
     public void fetchAllSong(){
         Call<ResponseDto<List<Song>>> call = SongAPI.retrofit.create(SongAPI.class).findAll();
 
@@ -54,7 +55,6 @@ public class SongRepository {
             public void onResponse(Call<ResponseDto<List<Song>>> call, Response<ResponseDto<List<Song>>> response) {
                 Log.d(TAG, "onResponse: 성공");
                 ResponseDto<List<Song>> result = response.body();
-                Log.d(TAG, "onResponse: result: "+result);
                 mtSongList.setValue(result.getData());
             }
 

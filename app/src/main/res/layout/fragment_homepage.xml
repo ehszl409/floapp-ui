@@ -90,7 +90,6 @@
 
 
 
-
     <include layout="@layout/mini_player"/>
 
 </LinearLayout>

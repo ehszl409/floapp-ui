@@ -2,6 +2,7 @@ package com.cos.musicapp_ui.view.main.frag;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +31,20 @@ import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 public class FragTour extends Fragment {
+
+    private static final String TAG = "FragTour";
 
     private ViewPager vpFloChart;
     private TabLayout tabs;
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private ImageView ivPlayList;
     private ConstraintLayout layoutPlayerBtnArea;
+
 
 
     private RecyclerView rvSongList;
@@ -87,6 +93,8 @@ public class FragTour extends Fragment {
         initData();
 
 
+
+
         ivPlayList = view.findViewById(R.id.iv_playlist);
 
         // 재생목록으로 이동 하는 로직
@@ -108,18 +116,33 @@ public class FragTour extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        onDestroy();
+    }
+
     //???
     @Override
     public void onStart() {
+        Log.d(TAG, "onStart: 이벤트 버스가 등록되었습니다.");
         super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 
     // 구독 지원 함수
     public void dataObserver(){
+        Log.d(TAG, "dataObserver: 데이터의 변화를 감지하기 위해 구독을 시작합니다.");
         mainViewModel.subscribe().observe(this, new Observer<List<Song>>() {
             @Override
             public void onChanged(List<Song> songs) {
+                Log.d(TAG, "onChanged: song 데이터 변화를 관찰합니다");
                 allSongAdapter.setMusics(songs);
             }
         });
@@ -127,6 +150,8 @@ public class FragTour extends Fragment {
 
     // 초기 데이터 넣는 함수.
     private void initData() {
+        Log.d(TAG, "initData: 실행되면서  뷰모델의 findAll() 실행됨.");
         mainViewModel.findAll();
+
     }
 }

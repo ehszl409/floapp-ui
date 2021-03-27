@@ -15,7 +15,7 @@
         android:background="#090D12">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_player_view_art"
+            android:id="@+id/iv_main_player_view_art"
             android:layout_width="270dp"
             android:layout_height="270dp"
             android:src="@drawable/ashisland_melody"
@@ -66,19 +66,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/riv_player" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_main_player_view_art" />
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_marginTop="20dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/white"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19"
-            app:srcCompat="@drawable/ic_favorite_border" />
+            app:srcCompat="@drawable/ic_favorite_border"
+            app:tint="@color/white" />
 
         <ImageView
             android:id="@+id/iv_playlist"
@@ -102,7 +102,7 @@
 
 
         <androidx.appcompat.widget.AppCompatSeekBar
-            android:id="@+id/appCompatSeekBar"
+            android:id="@+id/sb_main_player"
             android:layout_width="390dp"
             android:layout_height="wrap_content"
             android:progressDrawable="@drawable/seekbar_progress"
@@ -136,6 +136,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appCompatSeekBar" />
 
         <TextView
+            android:id="@+id/tv_main_player_total_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="03:00"
@@ -145,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appCompatSeekBar" />
 
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/iv_main_player_play"
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:tint="@color/white"

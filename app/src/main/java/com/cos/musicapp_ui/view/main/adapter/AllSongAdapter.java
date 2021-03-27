@@ -104,13 +104,13 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
 
                 Log.d(TAG, "MyViewHolder: " + songPosition);
 
-
-                Glide //내가 아무것도 안 했는데 스레드로 동작(편안)
-                        .with(mainActivity)
-                        .load(songList.get(getAdapterPosition()).getImg())
-                        .centerCrop()
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .into(mainActivity.ivPlayerViewArt);
+//
+//                Glide //내가 아무것도 안 했는데 스레드로 동작(편안)
+//                        .with(mainActivity)
+//                        .load(songList.get(getAdapterPosition()).getImg())
+//                        .centerCrop()
+//                        .placeholder(R.drawable.ic_launcher_background)
+//                        .into(mainActivity.ivMainPlayerViewArt);
 
                     EventBus.getDefault().post(new SongPassenger(songList.get(getAdapterPosition())));
 
