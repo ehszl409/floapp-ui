@@ -1,6 +1,7 @@
 package com.cos.musicapp_ui.view.main.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,22 +16,47 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cos.musicapp_ui.R;
+import com.cos.musicapp_ui.SearchResultFragment;
+import com.cos.musicapp_ui.StorageListFragment;
+import com.cos.musicapp_ui.event.Event1;
+import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
+import com.cos.musicapp_ui.view.login.LoginActivity;
+import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.frag.FragStorage;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import org.greenrobot.eventbus.EventBus;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHolder> {
 
-
-
     private static final String TAG = "StorageAdapter";
     public List<Storage> storageList = new ArrayList<>();
+    private StorageRepository storageRepository = new StorageRepository();
+
+
+    public StorageAdapter() {};
 
     public StorageAdapter(List<Storage> storageList) {
+        this.storageList = storageList;
+        notifyDataSetChanged();
+    }
+
+    public void removeStorage(int id){
+        this.storageList.remove(id);
+        notifyDataSetChanged();
+    }
+
+    public void addStorage(Storage storage){
+        this.storageList.add(storage);
+        notifyDataSetChanged();
+    }
+
+    public void setStorage(List<Storage> storageList){
         this.storageList = storageList;
         notifyDataSetChanged();
     }
@@ -60,6 +86,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
      private RoundedImageView ivStorageViewArt;
      private TextView tvStorageTitle;
      private TextView tvStorageSongCount;
+     private ImageView ivStorageDelete;
      private ImageView ivStoragePlay;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -69,16 +96,41 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
             tvStorageTitle = itemView.findViewById(R.id.tv_storage_title);
             tvStorageSongCount = itemView.findViewById(R.id.tv_storage_song_count);
             ivStoragePlay = itemView.findViewById(R.id.iv_song_play);
+            ivStorageDelete = itemView.findViewById(R.id.iv_storage_delete);
+
+            ivStorageViewArt.setOnClickListener(v -> {
+                // 리스트 아이템 ID 찾기
+                int itemPos = getAdapterPosition();
+                Log.d(TAG, "itemPos : " + itemPos);
+                Storage storage = storageList.get(itemPos);
+                Log.d(TAG, "storage : " + storage);
+                int itemId = storage.getId();
+
+                GlobalBus.getInstance().post(new Event1(storage));
+                ((MainActivity)v.getContext()).replace(StorageListFragment.newInstance());
+
+            });
 
 
 
+            ivStorageDelete.setOnClickListener(v -> {
+                // 리스트 아이템 ID 찾기
+                int itemPos = getAdapterPosition();
+                Log.d(TAG, "itemPos : " + itemPos);
+                Storage storage = storageList.get(itemPos);
+                Log.d(TAG, "storage : " + storage);
+                int itemId = storage.getId();
+
+                storageRepository.deleteStorage(itemId);
+                removeStorage(itemPos);
+            });
 
 
         }
 
         public void setItem(Storage storage){
             tvStorageTitle.setText(storage.getTitle());
-            tvStorageSongCount.setText(storage.getSongCount() + "곡");
+          //  tvStorageSongCount.setText(storage.getSongCount() + "곡");
         }
 
 

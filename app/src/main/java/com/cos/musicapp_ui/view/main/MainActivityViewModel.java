@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModel;
 
 
 import com.cos.musicapp_ui.model.SongRepository;
+import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Song;
+import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.utils.PlayService;
 
 import java.util.List;
@@ -22,13 +24,19 @@ public class MainActivityViewModel extends ViewModel {
 
     private SongRepository songRepository;
 
+
     private MutableLiveData<List<Song>> mtSongList;
     public MutableLiveData<List<Song>> mtPlayList;
+
+    // 보관함 관련 코드
+    private MutableLiveData<List<Storage>> mtStorageList;
+    private StorageRepository storageRepository;
 
     private MutableLiveData<PlayService.LocalBinder> serviceBinder = new MutableLiveData<>(); //서비스는 걍 귀찮으니 여기서 만들겠음.
     private PlayService playService;
 
 
+    // 서비스 관련
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -48,8 +56,12 @@ public class MainActivityViewModel extends ViewModel {
 
     public MainActivityViewModel() {
         songRepository = new SongRepository();
+        // 보관함 관련 코드
+        storageRepository = new StorageRepository();
         mtSongList = songRepository.initMtSong();
         mtPlayList = songRepository.initPlaylist();
+        // 보관함 관련 코드
+        mtStorageList = storageRepository.initMtStorage();
     }
 
  //   private SongRepository sr = new SongRepository(mtSongList, mtPlayList);
@@ -66,6 +78,9 @@ public class MainActivityViewModel extends ViewModel {
         return mtSongList;
     }
 
+    // 보관함 관련 코드
+    public MutableLiveData<List<Storage>> subStorageData() {return mtStorageList;}
+
     public MutableLiveData<List<Song>> PlayListSubscribe() {
         return mtPlayList;
     }
@@ -74,6 +89,9 @@ public class MainActivityViewModel extends ViewModel {
     public void findAll() {
         songRepository.fetchAllSong();
     }
+
+    // *********** 보관함 관련 코드 **********
+    public void findAllStorage() {storageRepository.fetchAllStorage();}
 
 
     public ServiceConnection getServiceConnection() {

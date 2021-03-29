@@ -14,15 +14,30 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.cos.musicapp_ui.event.Event1;
+import com.cos.musicapp_ui.event.OnItemClick;
+import com.cos.musicapp_ui.model.dto.Storage;
+
+import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragStorage;
+import com.squareup.otto.Subscribe;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public class StorageListFragment extends Fragment implements MainActivity.OnBackPressedListener {
 
+    private static final String TAG = "StorageListFragment";
     private FragStorage storageFragment;
     private ImageView ivPlayList;
     private ConstraintLayout layoutPlayerBtnArea;
     private ImageView ivBack;
+
+
+
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
     public static StorageListFragment newInstance() {
@@ -34,8 +49,9 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storage_list, container, false);
 
-
         ivPlayList = view.findViewById(R.id.iv_playlist);
+
+        GlobalBus.getInstance().register(this);
 
         // 재생목록으로 이동 하는 로직
         ivPlayList.setOnClickListener(v -> {
@@ -63,6 +79,23 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
 
         return view;
+    } // end of onCreateView
+
+    @Subscribe
+    public void storageInfo(Event1 event1){
+        Log.d(TAG, "storageInfo: 버스로 전달 받은 데이터  = " + event1.getStorage());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        GlobalBus.getInstance().unregister(this);
     }
 
     @Override
@@ -81,7 +114,7 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
         // activity.onBackPressed();
     }
 
-    // Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다.
+   /* // Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
     @Override
     //혹시 Context 로 안되시는분은 Activity 로 바꿔보시기 바랍니다.
     public void onAttach(Context context) {
@@ -89,6 +122,7 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
         Log.e("Other", "onAttach()");
         ((MainActivity) context).setOnBackPressedListener(this);
     }
+*/
 
 
 }

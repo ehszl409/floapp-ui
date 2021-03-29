@@ -152,6 +152,5 @@ public class FragTour extends Fragment {
     private void initData() {
         Log.d(TAG, "initData: 실행되면서  뷰모델의 findAll() 실행됨.");
         mainViewModel.findAll();
-
     }
 }

@@ -17,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +27,10 @@ import com.cos.musicapp_ui.MusicPlayerActivity;
 import com.cos.musicapp_ui.ProfileActivity;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.StorageListFragment;
+import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -43,11 +47,17 @@ public class FragStorage extends Fragment {
 
     private RecyclerView rvStorage;
     private StorageAdapter storageAdapter;
+    private MainActivityViewModel mainViewModel;
 
     // 보관함에서 띄우는 다이얼 객체들
     private AppCompatImageView ivStorageAdd;
     private TextView tvDialogCancel, tvDialogComfirm;
     private TextInputEditText tiDialogTitle;
+
+    // 레트로핏
+    private StorageRepository storageRepository = new StorageRepository();
+
+
 
 
 
@@ -55,23 +65,22 @@ public class FragStorage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storagepage, container, false);
+        // 리스트를 만들면 프래그먼트가 새로고침을 할 수 있도록 객체를 생성했습니다.
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
         tvUsername = view.findViewById(R.id.tv_username);
-
         rvStorage = view.findViewById(R.id.rv_storage);
-
-        List<Storage> storages = new ArrayList<>();
-        storages.add(new Storage(1, "testStorga", 2, null
-        ));
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         rvStorage.setLayoutManager(manager);
-        storageAdapter = new StorageAdapter(storages);
+        storageAdapter = new StorageAdapter();
         rvStorage.setAdapter(storageAdapter);
 
         // ************* 보관함 다이얼 띄우기 ******************//
         ivStorageAdd = view.findViewById(R.id.iv_storage_add);
         ivStorageAdd.setOnClickListener(v -> {
             Log.d(TAG, "클릭 이벤트 작동");
+            storageRepository.Test();
             View dialog = v.inflate(v.getContext(), R.layout.item_dialog_storage, null);
             AlertDialog.Builder dlg = new AlertDialog.Builder(v.getContext());
             dlg.setView(dialog);
@@ -91,14 +100,37 @@ public class FragStorage extends Fragment {
             tvDialogComfirm.setOnClickListener(v1 -> {
                 Log.d(TAG, "다이얼 확인 버튼 클릭 됨.");
                 String title = tiDialogTitle.getText().toString();
+                Storage storage = new Storage();
+                storage.setTitle(title);
 
-                storages.add(new Storage(2,title,2,null));
+                storageRepository.saveStorage(storage);
+                // 어댑터한테 보관함이 추가 된 것을 알려주면
+                // 뷰 모델에 알림이 발생해서 리스트를 ..?? 일단 어댑터로 바로 쐈습니다.
+                storageAdapter.addStorage(storage);
+
+                // 어댑터에서 UI는 그렸지만 DB에서 Id값이 동기화 되지 않아
+                // NPE 발생 그래서 프레그먼트 자동 새로 고침
+                ft.detach(this).attach(this).commit();
+
+
+
                 alertDialog.dismiss();
             });
 
 
         });
         // ************* 보관함 다이얼 띄우기 ******************//
+
+        //*********** 뷰 모델과 보관함 리스트 연결하기 *********//
+        MainActivity mainActivity = (MainActivity) container.getContext();
+
+        mainViewModel = mainActivity.mainViewModel;
+
+        initData();
+        dataObserver();
+
+
+
 
 
 
@@ -131,5 +163,24 @@ public class FragStorage extends Fragment {
 
         return view;
     }
+
+    // 이벤트 버스 등록
+
+    // 초기 데이터 넣기
+    private void initData(){
+        mainViewModel.findAllStorage();
+    }
+
+    // 뷰 모델 구독
+    public void dataObserver(){
+        mainViewModel.subStorageData().observe(this, new Observer<List<Storage>>() {
+            @Override
+            public void onChanged(List<Storage> storages) {
+                Log.d(TAG, "onChanged: 뷰 모델에서 변화 감지.");
+                storageAdapter.setStorage(storages);
+            }
+        });
+    }
+
 }
 
