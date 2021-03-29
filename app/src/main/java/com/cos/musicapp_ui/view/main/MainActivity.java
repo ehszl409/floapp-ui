@@ -16,8 +16,12 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.cos.musicapp_ui.StorageListFragment;
+import com.cos.musicapp_ui.event.Event1;
+import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
 import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
 import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
+import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
 import com.cos.musicapp_ui.utils.eventbus.UrlPassenger;
 import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
@@ -71,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public Thread uiHandleThread;
     public Handler handler = new Handler();
+
+    // StorageListFrag
+    public  TextView tvStorageListTitle;
+
 
 
     @Override
@@ -142,6 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ivMainPlayerPlay = findViewById(R.id.iv_main_player_play);
         tvMainPlayerTotalTime = findViewById(R.id.tv_main_player_total_time);
         // ******* 음악 재생하기 *******
+
+        // ****** 보관함 리스트 ******
+        tvStorageListTitle = findViewById(R.id.tv_storage_list_title);
+        // ****** 보관함 리스트 ******
     }
 
     public void songPlay() {
@@ -275,6 +287,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            // Log.d(TAG, "playlistAdd: 내 재생목록에 song 추가"+songPassenger.song);
             //playListAdapter.addSong(songPassenger.song);
         }
+
+        @Subscribe
+        public void storagePassenger(StoragePassenger storagePassenger){
+            Log.d(TAG, "storagePassenger: 데이터 = " + storagePassenger.getStorage());
+            String storageListTitle = storagePassenger.getStorage().getTitle();
+            Log.d(TAG, "storagePassenger: storageTtile = " + storageListTitle);
+            Bundle bundle = new Bundle();
+            bundle.putString("storageData", storageListTitle);
+            StorageListFragment storageListFragment = new StorageListFragment();
+            storageListFragment.setArguments(bundle);
+
+        }
+
     @Override
     public void onClick(View v) {
         Log.d(TAG, "onClick: 클릭 확인됨.");
@@ -315,6 +340,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onStart: 이벤트 버스가 실행되었습니다.");
         super.onStart();
         EventBus.getDefault().register(this);
+
     }
 
 
@@ -322,6 +348,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+
     }
 
     // 액비비티가 멈췄을 때에도 이벤트 버스를 해제하지 않으면 로그인이나 플레이어 액티비티에서 메인 액티비티로 올때

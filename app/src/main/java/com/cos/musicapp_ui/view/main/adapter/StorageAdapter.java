@@ -2,6 +2,7 @@ package com.cos.musicapp_ui.view.main.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,15 +21,18 @@ import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchResultFragment;
 import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.event.Event1;
+import com.cos.musicapp_ui.event.OnItemClick;
 import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
+import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
 import com.cos.musicapp_ui.view.login.LoginActivity;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.frag.FragStorage;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +42,11 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
     private static final String TAG = "StorageAdapter";
     public List<Storage> storageList = new ArrayList<>();
     private StorageRepository storageRepository = new StorageRepository();
+    private StorageListFragment storageListFragment = StorageListFragment.newInstance();
 
 
-    public StorageAdapter() {};
+    public  StorageAdapter() {};
+
 
     public StorageAdapter(List<Storage> storageList) {
         this.storageList = storageList;
@@ -106,8 +113,13 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
                 Log.d(TAG, "storage : " + storage);
                 int itemId = storage.getId();
 
-                GlobalBus.getInstance().post(new Event1(storage));
+
+                EventBus.getDefault().post(new StoragePassenger(storage));
+                StorageListFragment storageListFragment = new StorageListFragment();
+                storageListFragment.setTitle(storage.getTitle());
                 ((MainActivity)v.getContext()).replace(StorageListFragment.newInstance());
+
+
 
             });
 

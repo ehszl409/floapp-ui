@@ -1,18 +1,22 @@
 package com.cos.musicapp_ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.cos.musicapp_ui.event.Event1;
 import com.cos.musicapp_ui.event.OnItemClick;
@@ -24,11 +28,12 @@ import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragStorage;
 import com.squareup.otto.Subscribe;
 
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.ThreadMode;
 
 
-public class StorageListFragment extends Fragment implements MainActivity.OnBackPressedListener {
+public class StorageListFragment extends Fragment implements MainActivity.OnBackPressedListener{
 
     private static final String TAG = "StorageListFragment";
     private FragStorage storageFragment;
@@ -36,6 +41,11 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
     private ConstraintLayout layoutPlayerBtnArea;
     private ImageView ivBack;
 
+    private StorageAdapter storageAdapter;
+
+    private TextView tvStorageListTitle;
+
+    public String storageTitle;
 
 
 
@@ -51,7 +61,22 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
         ivPlayList = view.findViewById(R.id.iv_playlist);
 
-        GlobalBus.getInstance().register(this);
+
+
+/*
+        Bundle bundle = getArguments();
+        Log.d(TAG, "onCreateView: 번들 데이터 = " + bundle);
+        String title = bundle.getString("adapterBundle");
+        //String title = bundle.getString("storageData");
+        Log.d(TAG, "onCreateView: 전달 받은 데이터 = " + bundle.getString("storageData"));
+*/
+
+        tvStorageListTitle = view.findViewById(R.id.tv_storage_list_title);
+        tvStorageListTitle.setText(storageTitle);
+
+
+
+
 
         // 재생목록으로 이동 하는 로직
         ivPlayList.setOnClickListener(v -> {
@@ -78,25 +103,18 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
         });
 
 
+
         return view;
     } // end of onCreateView
 
-    @Subscribe
-    public void storageInfo(Event1 event1){
-        Log.d(TAG, "storageInfo: 버스로 전달 받은 데이터  = " + event1.getStorage());
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void setTitle(String title){
+        Log.d(TAG, "setTitle: " + title);
+        storageTitle = title;
+    };
 
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        GlobalBus.getInstance().unregister(this);
-    }
+
 
     @Override
     public void onBack() {
@@ -114,7 +132,10 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
         // activity.onBackPressed();
     }
 
-   /* // Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
+
+
+
+   /// Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
     @Override
     //혹시 Context 로 안되시는분은 Activity 로 바꿔보시기 바랍니다.
     public void onAttach(Context context) {
@@ -122,7 +143,7 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
         Log.e("Other", "onAttach()");
         ((MainActivity) context).setOnBackPressedListener(this);
     }
-*/
+
 
 
 }

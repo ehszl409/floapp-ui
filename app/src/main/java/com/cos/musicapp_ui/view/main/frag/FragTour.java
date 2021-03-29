@@ -116,24 +116,6 @@ public class FragTour extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        onDestroy();
-    }
-
-    //???
-    @Override
-    public void onStart() {
-        Log.d(TAG, "onStart: 이벤트 버스가 등록되었습니다.");
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
 
     // 구독 지원 함수
