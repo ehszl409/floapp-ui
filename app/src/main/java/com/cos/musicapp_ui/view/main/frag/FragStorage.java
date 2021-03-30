@@ -67,7 +67,7 @@ public class FragStorage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storagepage, container, false);
 
-
+        MainActivity mainActivity = (MainActivity) container.getContext();
 
         // 리스트를 만들면 프래그먼트가 새로고침을 할 수 있도록 객체를 생성했습니다.
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -77,14 +77,14 @@ public class FragStorage extends Fragment {
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         rvStorage.setLayoutManager(manager);
-        storageAdapter = new StorageAdapter();
+        storageAdapter = mainActivity.storageAdapter;
         rvStorage.setAdapter(storageAdapter);
 
         // ************* 보관함 다이얼 띄우기 ******************//
         ivStorageAdd = view.findViewById(R.id.iv_storage_add);
         ivStorageAdd.setOnClickListener(v -> {
             Log.d(TAG, "클릭 이벤트 작동");
-            storageRepository.Test();
+
             View dialog = v.inflate(v.getContext(), R.layout.item_dialog_storage, null);
             AlertDialog.Builder dlg = new AlertDialog.Builder(v.getContext());
             dlg.setView(dialog);
@@ -123,15 +123,6 @@ public class FragStorage extends Fragment {
 
 
         });
-        // ************* 보관함 다이얼 띄우기 ******************//
-
-        //*********** 뷰 모델과 보관함 리스트 연결하기 *********//
-        MainActivity mainActivity = (MainActivity) container.getContext();
-
-        mainViewModel = mainActivity.mainViewModel;
-
-        initData();
-        dataObserver();
 
 
 
@@ -168,23 +159,8 @@ public class FragStorage extends Fragment {
         return view;
     }
 
-    // 이벤트 버스 등록
 
-    // 초기 데이터 넣기
-    private void initData(){
-        mainViewModel.findAllStorage();
-    }
 
-    // 뷰 모델 구독
-    public void dataObserver(){
-        mainViewModel.subStorageData().observe(this, new Observer<List<Storage>>() {
-            @Override
-            public void onChanged(List<Storage> storages) {
-                Log.d(TAG, "onChanged: 뷰 모델에서 변화 감지.");
-                storageAdapter.setStorage(storages);
-            }
-        });
-    }
 
 }
 

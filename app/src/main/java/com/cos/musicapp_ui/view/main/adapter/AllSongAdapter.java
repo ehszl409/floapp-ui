@@ -11,16 +11,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cos.musicapp_ui.DialogActivity;
 import com.cos.musicapp_ui.R;
+import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.model.dto.Song;
+import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
 import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
 import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.frag.FragSelectStorage;
+import com.cos.musicapp_ui.view.main.frag.FragStorage;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,11 +41,17 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
     public int songPosition;
 
 
+    public StorageAdapter storageAdapter;
+    public StorageSelectAdapter storageSelectAdapter;
+
+
+
     public AllSongAdapter() { }
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
+
 
 
     public void setMusics(List<Song> songList) {
@@ -87,7 +98,9 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
         private ImageView ivSongPlay;
         private ImageView ivSongArt;
         private ImageView ivSongStorageAdd;
-        private DialogActivity dialogActivity;
+
+        private RecyclerView rvStorageSelectList;
+
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -99,17 +112,22 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
             ivSongPlay = itemView.findViewById(R.id.iv_song_play);
             ivSongArt = itemView.findViewById(R.id.iv_song_art);
 
+
+
             ivSongStorageAdd = itemView.findViewById(R.id.iv_song_storage_add);
 
+            storageAdapter = mainActivity.storageAdapter;
+           // storageSelectAdapter = mainActivity.storageSelectAdapter;
             ivSongStorageAdd.setOnClickListener(v -> {
                 Log.d(TAG, "보관함 선택 버튼 클릭됨.");
-                dialogActivity = new DialogActivity();
-                View dialog = v.inflate(v.getContext(), R.layout.item_dialog_storage_list, null);
-                AlertDialog.Builder dlg = new AlertDialog.Builder(v.getContext());
-                dlg.setView(dialog);
+                int pos = getAdapterPosition();
+                Song song = songList.get(pos);
+                Log.d(TAG, "MyViewHolder: 선택한 songId = " + song.getId());
+                Log.d(TAG, "MyViewHolder: 선택한 song = " + song);
 
-                final AlertDialog alertDialog = dlg.create();
-                alertDialog.show();
+               // storageSelectAdapter.transSongData(song);
+                ((MainActivity)v.getContext()).replace(FragSelectStorage.newInstance());
+
             });
 
             ivSongPlay.setOnClickListener(v -> {

@@ -19,33 +19,21 @@ import retrofit2.Response;
 public class StorageRepository {
 
     private static final String TAG = "StorageRepository";
+
+    // 라이브 데이터 생성.
     private MutableLiveData<List<Storage>> mtStorageList;
 
+    // 객체 생성시 라이브 데이터 메모리 띄워준다.
     public StorageRepository(){
         mtStorageList = new MutableLiveData<>();
     }
 
+    // StorageRepository의 라이브 데이터 연결해주기 위해 함수를 만들어 준다.
     public MutableLiveData<List<Storage>> initMtStorage(){
         return mtStorageList;
     }
 
-    // 레트로핏으로 서버에서 데이터를 받아옵니다.
-    public void Test(){
-        Call<ResponseDto<String>> call = SongAPI.retrofit.create(SongAPI.class).test();
 
-        call.enqueue(new Callback<ResponseDto<String>>() {
-            @Override
-            public void onResponse(Call<ResponseDto<String>> call, Response<ResponseDto<String>> response) {
-                Log.d(TAG, "onResponse: 진입 확임.");
-                Log.d(TAG, "onResponse: 데이터 = " + response.body().getData());
-            }
-
-            @Override
-            public void onFailure(Call<ResponseDto<String>> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
-            }
-        });
-    }
 
     public void fetchAllStorage(){
         Call<ResponseDto<List<Storage>>> call = SongAPI.retrofit.create(SongAPI.class).storageFindAll();

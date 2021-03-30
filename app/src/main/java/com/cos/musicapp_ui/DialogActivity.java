@@ -38,7 +38,7 @@ public class DialogActivity extends AppCompatActivity {
 
         mContext = DialogActivity.this;
         LinearLayoutManager manager = new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false);
-        rvStorageSelectList.setHasFixedSize(true);
+
         rvStorageSelectList.setLayoutManager(manager);
         storageSelectAdapter = new StorageSelectAdapter(storages);
         rvStorageSelectList.setAdapter(storageSelectAdapter);

@@ -17,8 +17,10 @@ import com.bumptech.glide.Glide;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.model.StorageRepository;
+import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 
@@ -37,6 +39,12 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
     public  StorageAdapter() {};
 
+    public List<Storage> initStorageData(){
+        Log.d(TAG, "initStorageData: 호출 됨 데이터 = " + storageList);
+        return storageList;
+    }
+
+
 
 
     public void removeStorage(int id){
@@ -51,6 +59,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
     public void setStorage(List<Storage> storageList){
         this.storageList = storageList;
+        Log.d(TAG, "setStorage: " + this.storageList);
         notifyDataSetChanged();
     }
 

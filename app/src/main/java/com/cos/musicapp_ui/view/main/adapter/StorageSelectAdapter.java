@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.R;
+import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -21,6 +22,13 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
 
     private static final String TAG = "StorageSelectAdapter";
     public List<Storage> storageList = new ArrayList<>();
+    private Song song;
+
+    public StorageSelectAdapter() {};
+
+    public void transSongData(Song song){
+        this.song = song;
+    }
 
     public StorageSelectAdapter(List<Storage> storages) {
         this.storageList = storages;
@@ -37,7 +45,7 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_dialog_select_storage_list, parent, false);
+        View view = inflater.inflate(R.layout.item_select_storage, parent, false);
 
 
         return new MyViewHolder(view);
@@ -64,6 +72,11 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
             ivStorageViewArt = itemView.findViewById(R.id.iv_storage_view_art);
             tvStorageTitle = itemView.findViewById(R.id.tv_storage_title);
             tvStorageSongCount = itemView.findViewById(R.id.tv_storage_song_count);
+
+
+            ivStorageViewArt.setOnClickListener(v -> {
+                Log.d(TAG, "AllSongAdapter로 부터 전달받은 데이터 = " + song);
+            });
         }
 
         public void setItem(Storage storage){

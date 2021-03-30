@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.event.Event1;
+import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
 import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
 import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
@@ -25,6 +27,8 @@ import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
 import com.cos.musicapp_ui.utils.eventbus.UrlPassenger;
 import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
+import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
+import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragHome;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchFragment;
@@ -39,6 +43,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -76,8 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Thread uiHandleThread;
     public Handler handler = new Handler();
 
-    // StorageListFrag
-    public  TextView tvStorageListTitle;
+    // 보관함 리사이클러뷰 어댑터를 메인 액티비에서 띄우줍니다.
+    // 목적 : 프래그먼트를 직접 띄우지 않아도 프래그먼트속 리사이클러뷰 데이터를 사용하기 위해서
+    public StorageAdapter storageAdapter;
+    public StorageSelectAdapter storageSelectAdapter;
 
 
 
@@ -85,11 +92,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         // 초기화 함수
         initView();
+        dataObserver();
+        initData();
 
-        mainViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        //storageSelectAdapter = new StorageSelectAdapter(storageAdapter.initStorageData());
+
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -152,204 +163,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // ******* 음악 재생하기 *******
 
         // ****** 보관함 리스트 ******
-        tvStorageListTitle = findViewById(R.id.tv_storage_list_title);
+        storageAdapter = new StorageAdapter();
+        storageSelectAdapter = new StorageSelectAdapter();
         // ****** 보관함 리스트 ******
     }
 
-    public void songPlay() {
-        sbMiniPlayer.setMax(mp.getDuration());
-        sbMainPlayer.setMax(mp.getDuration());
 
-        Log.d(TAG, "songPlay: 노래 시작 합니다.");
-        Constants.isPlaying = 1;
-        setTotalDuration();
-        ivMiniPlayerPlay.setImageResource(android.R.drawable.ic_media_pause);
-        ivMainPlayerPlay.setImageResource(android.R.drawable.ic_media_pause);
 
-        mp.start();
-        seekBarUiHandle();
+
+
+
+    //*********** 보관함 데이터 가져오기 **************
+    public void initData(){
+        mainViewModel.findAllStorage();
     }
 
-    // mainSeekbar -> sbMiniPlayer
-    // playViewSeekBar -> sbMainPlayer
-    // ivBarPlay -> ivMiniPlayerPlay
-    // ivPlayViewBar -> ivMainPlayerPlay
-    public void songStop() {
-        mp.reset();
-        mp.seekTo(0);
-        sbMiniPlayer.setProgress(0);
-        Constants.threadStatus = true;
-        ivMiniPlayerPlay.setImageResource(android.R.drawable.ic_media_play);
-        ivMainPlayerPlay.setImageResource(android.R.drawable.ic_media_play);
-        Constants.isPlaying = -1;
-    }
-
-
-
-    public void seekBarInit() {
-        sbMiniPlayer.setMax(100000);
-        sbMiniPlayer.setProgress(0);
-        sbMainPlayer.setProgress(0);
-    }
-
-
-    public void setTotalDuration() {
-        Integer totalTime = mp.getDuration();
-
-        int m = totalTime / 60000;
-        int s = (totalTime % 60000) / 1000;
-        String strTime = String.format("%02d:%02d", m, s);
-
-        tvMainPlayerTotalTime.setText(strTime);
-    }
-
-    public void seekBarUiHandle() {
-
-        uiHandleThread = new Thread(new Runnable() {
+    // 뷰 모델 구독
+    public void dataObserver(){
+        mainViewModel.subStorageData().observe(this, new Observer<List<Storage>>() {
             @Override
-            public void run() {
-                while (Constants.isPlaying == 1) {
-
-                    handler.post(new Runnable() {// runOnUiThread랑 같음, 대신 이렇게 쓰면 uiHandleThread 쓰레드를 원하는데서 참조가능
-                        @Override //UI 변경하는 애만 메인 스레드에게 메시지를 전달
-                        public void run() {
-                            sbMiniPlayer.setProgress(mp.getCurrentPosition());
-                            //((MainActivity) getActivity()).playViewSeekBar.setProgress(mp.getCurrentPosition()); // 여기가 에러나는 부분
-                            sbMainPlayer.setProgress(mp.getCurrentPosition());
-
-                            if (mp.getCurrentPosition() >= mp.getDuration()) {
-                                songStop();
-                            }
-                        }
-
-                    });
-
-                    try {
-                        Thread.sleep(1000);
-                        //Log.d(TAG, "run: 33333333");
-                        if (Constants.threadStatus) {
-                            //Log.d(TAG, "run: 222222222");
-                            uiHandleThread.interrupt(); //그 즉시 스레드 종료시키기 위해(강제종료), sleep을 무조건 걸어야 된다. 스레드가 조금이라도 쉬어야 동작함
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        //Log.d(TAG, "run: adadsasdda");
-                    }
-
-                }
+            public void onChanged(List<Storage> storages) {
+                Log.d(TAG, "onChanged: 뷰 모델에서 변화 감지.");
+                storageAdapter.setStorage(storages);
             }
         });
     }
-
-    public void onPrepared(String songUrl) throws IOException { //이거 나중에 스레드로
-
-        mp.reset();
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() { //하 씨바 미치것네
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                //EventBus.getDefault().post(new SongEvent(songUrl, mainActivity.isPlaying));
-                songPlay();
-            }
-        });
-        mp.setDataSource(songUrl);
-        mp.prepareAsync();
-    }
+    //*********** 보관함 데이터 가져오기 **************
 
 
-
-    // ?????
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void songPrepare(UrlPassenger urlPassenger) throws IOException {
-        seekBarInit();
-        Log.d(TAG, "songPrepare: url 구독");
-
-        Constants.isPlaying = Constants.isPlaying * -1;
-        Log.d(TAG, "songPlay: Song 시작");
-        onPrepared(urlPassenger.songUrl);
-
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void nextSong(SongIdPassenger songIdPassenger) {  // 자꾸 private으로 주네. eventbus는 public method만!!
-        Log.d(TAG, "nextSong: " + songIdPassenger.songId);
-        Constants.prevNext = songIdPassenger.songId;
-    }
-
-
-
-
-     //mainSeekbar -> sbMiniPlayer
-     //playViewSeekBar -> sbMainPlayer
-     //ivBarPlay -> ivMiniPlayerPlay
-     //ivPlayViewBar -> ivMainPlayerPlay
-     @Subscribe(threadMode = ThreadMode.MAIN)
-        public void playlistAdd(SongPassenger songPassenger){
-           // Log.d(TAG, "playlistAdd: 내 재생목록에 song 추가"+songPassenger.song);
-            //playListAdapter.addSong(songPassenger.song);
-        }
-
-        @Subscribe
-        public void storagePassenger(StoragePassenger storagePassenger){
-            Log.d(TAG, "storagePassenger: 데이터 = " + storagePassenger.getStorage());
-            String storageListTitle = storagePassenger.getStorage().getTitle();
-            Log.d(TAG, "storagePassenger: storageTtile = " + storageListTitle);
-            Bundle bundle = new Bundle();
-            bundle.putString("storageData", storageListTitle);
-            StorageListFragment storageListFragment = new StorageListFragment();
-            storageListFragment.setArguments(bundle);
-
-        }
-
-    @Override
-    public void onClick(View v) {
-        Log.d(TAG, "onClick: 클릭 확인됨.");
-        switch (v.getId()) {
-           /* case R.id.iv_next:
-            case R.id.iv_playView_next:
-                nextORPrevClick(1);
-                break;
-
-            case R.id.iv_playView_prev:
-            case R.id.iv_prev:
-                nextORPrevClick(-1);
-                break;*/
-
-            case R.id.iv_mini_player_play:
-            case R.id.iv_main_player_play:
-                playBtnListner();
-                break;
-
-        }
-    }
-
-    public void playBtnListner(){
-
-        if (Constants.isPlaying == 1) {
-            Log.d(TAG, "onCreate: 글로벌 버튼 클릭되고 노래멈춤" + Constants.isPlaying);
-            //songPause();
-        } else {
-            Log.d(TAG, "onCreate: 노래시작" + Constants.isPlaying);
-            songPlay();
-        }
-    }
-
-
-    // ********이벤트를 받을 액티비티나 프래그먼트에 등록********
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart: 이벤트 버스가 실행되었습니다.");
-        super.onStart();
-        EventBus.getDefault().register(this);
-
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-
-    }
 
     // 액비비티가 멈췄을 때에도 이벤트 버스를 해제하지 않으면 로그인이나 플레이어 액티비티에서 메인 액티비티로 올때
     // 버스 등록이 중복되었다는 오류가 발생합니다.
@@ -363,6 +204,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // 뒤로가기 버튼 입력시간이 담길 long 객체
     private long pressedTime = 0;
+
+    @Override
+    public void onClick(View v) {
+
+    }
 
     // 리스너 생성
     public interface OnBackPressedListener {
@@ -433,34 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    /*//뒤로가기 버튼을 뺏어올 리스너 등록
-    public interface onKeyBackPressedListener {
-        void onBackKey();
-    }
 
-    private onKeyBackPressedListener mOnKeyBackPressedListener;
-
-    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) {
-        mOnKeyBackPressedListener = listener;
-    }
-
-    //메인에서 토스트를 띄우며 종료확인을 하기 위해 필드선언
-    //EndToast endToast = new EndToast(this);
-
-    @Override
-    public void onBackPressed() {
-        if (mOnKeyBackPressedListener != null) {
-            mOnKeyBackPressedListener.onBackKey();
-        } else {
-            //쌓인 BackStack 여부에 따라 Toast를 띄울지, 뒤로갈지
-            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                //* 종료 EndToast Bean 사용
-               // endToast.showEndToast("종료하려면 한번 더 누르세요.");
-            } else {
-                super.onBackPressed();
-            }
-        }
-    }*/
 
     public void replace(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
