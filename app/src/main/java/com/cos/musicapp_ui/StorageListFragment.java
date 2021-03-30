@@ -23,13 +23,14 @@ import com.cos.musicapp_ui.event.OnItemClick;
 import com.cos.musicapp_ui.model.dto.Storage;
 
 import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
+import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragStorage;
-import com.squareup.otto.Subscribe;
 
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
@@ -63,16 +64,8 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
 
 
-/*
-        Bundle bundle = getArguments();
-        Log.d(TAG, "onCreateView: 번들 데이터 = " + bundle);
-        String title = bundle.getString("adapterBundle");
-        //String title = bundle.getString("storageData");
-        Log.d(TAG, "onCreateView: 전달 받은 데이터 = " + bundle.getString("storageData"));
-*/
-
         tvStorageListTitle = view.findViewById(R.id.tv_storage_list_title);
-        tvStorageListTitle.setText(storageTitle);
+
 
 
 
@@ -108,11 +101,6 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
     } // end of onCreateView
 
 
-    public void setTitle(String title){
-        Log.d(TAG, "setTitle: " + title);
-        storageTitle = title;
-    };
-
 
 
 
@@ -135,14 +123,14 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
 
 
-   /// Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
+  /* /// Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
     @Override
     //혹시 Context 로 안되시는분은 Activity 로 바꿔보시기 바랍니다.
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.e("Other", "onAttach()");
         ((MainActivity) context).setOnBackPressedListener(this);
-    }
+    }*/
 
 
 

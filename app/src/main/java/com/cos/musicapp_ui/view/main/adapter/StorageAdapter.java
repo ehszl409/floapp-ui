@@ -1,8 +1,7 @@
 package com.cos.musicapp_ui.view.main.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,24 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cos.musicapp_ui.R;
-import com.cos.musicapp_ui.SearchResultFragment;
 import com.cos.musicapp_ui.StorageListFragment;
-import com.cos.musicapp_ui.event.Event1;
-import com.cos.musicapp_ui.event.OnItemClick;
 import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
-import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
-import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
-import com.cos.musicapp_ui.view.login.LoginActivity;
 import com.cos.musicapp_ui.view.main.MainActivity;
-import com.cos.musicapp_ui.view.main.frag.FragStorage;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 
@@ -42,16 +32,12 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
     private static final String TAG = "StorageAdapter";
     public List<Storage> storageList = new ArrayList<>();
     private StorageRepository storageRepository = new StorageRepository();
-    private StorageListFragment storageListFragment = StorageListFragment.newInstance();
+
 
 
     public  StorageAdapter() {};
 
 
-    public StorageAdapter(List<Storage> storageList) {
-        this.storageList = storageList;
-        notifyDataSetChanged();
-    }
 
     public void removeStorage(int id){
         this.storageList.remove(id);
@@ -114,9 +100,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
                 int itemId = storage.getId();
 
 
-                EventBus.getDefault().post(new StoragePassenger(storage));
-                StorageListFragment storageListFragment = new StorageListFragment();
-                storageListFragment.setTitle(storage.getTitle());
+
                 ((MainActivity)v.getContext()).replace(StorageListFragment.newInstance());
 
 
@@ -125,6 +109,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
 
 
+            // 삭제
             ivStorageDelete.setOnClickListener(v -> {
                 // 리스트 아이템 ID 찾기
                 int itemPos = getAdapterPosition();

@@ -47,7 +47,6 @@ public interface SongAPI {
     Call<Void> storageDelete(@Path("id") Integer id);
 
 
-
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constants.BASEURL)
             .addConverterFactory(GsonConverterFactory.create())

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Musicappui">
+        <activity android:name=".DialogActivity"/>
         <activity android:name=".MusicPlayerActivity"/>
         <activity android:name=".MusicPlayListActivity"/>
         <activity android:name=".ProfileActivity"/>

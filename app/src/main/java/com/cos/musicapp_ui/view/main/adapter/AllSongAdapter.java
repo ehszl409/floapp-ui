@@ -1,6 +1,7 @@
 package com.cos.musicapp_ui.view.main.adapter;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.cos.musicapp_ui.DialogActivity;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
@@ -84,6 +86,8 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
         private TextView tvSongId;
         private ImageView ivSongPlay;
         private ImageView ivSongArt;
+        private ImageView ivSongStorageAdd;
+        private DialogActivity dialogActivity;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -94,6 +98,19 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
             tvSongId = itemView.findViewById(R.id.tv_song_id);
             ivSongPlay = itemView.findViewById(R.id.iv_song_play);
             ivSongArt = itemView.findViewById(R.id.iv_song_art);
+
+            ivSongStorageAdd = itemView.findViewById(R.id.iv_song_storage_add);
+
+            ivSongStorageAdd.setOnClickListener(v -> {
+                Log.d(TAG, "보관함 선택 버튼 클릭됨.");
+                dialogActivity = new DialogActivity();
+                View dialog = v.inflate(v.getContext(), R.layout.item_dialog_storage_list, null);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(v.getContext());
+                dlg.setView(dialog);
+
+                final AlertDialog alertDialog = dlg.create();
+                alertDialog.show();
+            });
 
             ivSongPlay.setOnClickListener(v -> {
 

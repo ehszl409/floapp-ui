@@ -71,7 +71,7 @@ public class StorageRepository {
         call.enqueue(new Callback<ResponseDto<Storage>>() {
             @Override
             public void onResponse(Call<ResponseDto<Storage>> call, Response<ResponseDto<Storage>> response) {
-                Log.d(TAG, "onResponse: 보관함 리스트 추가하기 결과 : " + response.body().getData());
+                Log.d(TAG, "onResponse: 보관함 리스트 추가하기 성공 : " + response.body().getData());
             }
 
             @Override
