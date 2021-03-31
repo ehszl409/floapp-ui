@@ -1,6 +1,5 @@
 package com.cos.musicapp_ui.view.main.frag;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,16 +23,12 @@ import com.cos.musicapp_ui.MusicPlayListActivity;
 import com.cos.musicapp_ui.MusicPlayerActivity;
 import com.cos.musicapp_ui.ProfileActivity;
 import com.cos.musicapp_ui.R;
-import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FragStorage extends Fragment {
 
@@ -114,6 +106,8 @@ public class FragStorage extends Fragment {
 
                 // 어댑터에서 UI는 그렸지만 DB에서 Id값이 동기화 되지 않아
                 // NPE 발생 그래서 프레그먼트 자동 새로 고침
+                // 이거 아니면 initData()와 dataObserver()를 통해
+                // 다시 전체 찾기를 해주면 해결됩니다.
                 ft.detach(this).attach(this).commit();
 
 

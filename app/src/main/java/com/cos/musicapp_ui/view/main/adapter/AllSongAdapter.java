@@ -1,7 +1,6 @@
 package com.cos.musicapp_ui.view.main.adapter;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,21 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.cos.musicapp_ui.DialogActivity;
 import com.cos.musicapp_ui.R;
-import com.cos.musicapp_ui.StorageListFragment;
 import com.cos.musicapp_ui.model.dto.Song;
-import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
 import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
 import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.frag.FragSelectStorage;
-import com.cos.musicapp_ui.view.main.frag.FragStorage;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -116,8 +110,8 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
 
             ivSongStorageAdd = itemView.findViewById(R.id.iv_song_storage_add);
 
-            storageAdapter = mainActivity.storageAdapter;
-           // storageSelectAdapter = mainActivity.storageSelectAdapter;
+
+            storageSelectAdapter = mainActivity.storageSelectAdapter;
             ivSongStorageAdd.setOnClickListener(v -> {
                 Log.d(TAG, "보관함 선택 버튼 클릭됨.");
                 int pos = getAdapterPosition();
@@ -125,7 +119,7 @@ public class AllSongAdapter extends RecyclerView.Adapter<AllSongAdapter.MyViewHo
                 Log.d(TAG, "MyViewHolder: 선택한 songId = " + song.getId());
                 Log.d(TAG, "MyViewHolder: 선택한 song = " + song);
 
-               // storageSelectAdapter.transSongData(song);
+                storageSelectAdapter.transSongData(song);
                 ((MainActivity)v.getContext()).replace(FragSelectStorage.newInstance());
 
             });

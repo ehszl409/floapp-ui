@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.cos.musicapp_ui.model.SongRepository;
 import com.cos.musicapp_ui.model.StorageRepository;
+import com.cos.musicapp_ui.model.StorageSongRepository;
 import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.model.dto.StorageSong;
 import com.cos.musicapp_ui.utils.PlayService;
 
 import java.util.List;
@@ -31,6 +33,10 @@ public class MainActivityViewModel extends ViewModel {
     // 보관함 관련 코드
     private MutableLiveData<List<Storage>> mtStorageList;
     private StorageRepository storageRepository;
+
+    // 보관함 노래 관련 코드
+    private MutableLiveData<List<StorageSong>> mtStorageSongList;
+    private StorageSongRepository storageSongRepository;
 
     private MutableLiveData<PlayService.LocalBinder> serviceBinder = new MutableLiveData<>(); //서비스는 걍 귀찮으니 여기서 만들겠음.
     private PlayService playService;
@@ -56,12 +62,17 @@ public class MainActivityViewModel extends ViewModel {
 
     public MainActivityViewModel() {
         songRepository = new SongRepository();
-        // 보관함 관련 코드
         storageRepository = new StorageRepository();
+        storageSongRepository = new StorageSongRepository();
+
         mtSongList = songRepository.initMtSong();
         mtPlayList = songRepository.initPlaylist();
+
         // 보관함 관련 코드
         mtStorageList = storageRepository.initMtStorage();
+
+        // 보관함 노래 관련 코드
+        mtStorageSongList = storageSongRepository.initMtStorageSong();
     }
 
  //   private SongRepository sr = new SongRepository(mtSongList, mtPlayList);
@@ -81,6 +92,9 @@ public class MainActivityViewModel extends ViewModel {
     // 보관함 관련 코드
     public MutableLiveData<List<Storage>> subStorageData() {return mtStorageList;}
 
+    // 보관함 노래 관련 코드
+    public MutableLiveData<List<StorageSong>> subStorageSongData() {return mtStorageSongList;}
+
     public MutableLiveData<List<Song>> PlayListSubscribe() {
         return mtPlayList;
     }
@@ -92,7 +106,6 @@ public class MainActivityViewModel extends ViewModel {
 
     // *********** 보관함 관련 코드 **********
     public void findAllStorage() {storageRepository.fetchAllStorage();}
-
 
     public ServiceConnection getServiceConnection() {
         return connection;

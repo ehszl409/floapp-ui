@@ -148,11 +148,10 @@
         android:background="#090D12"
         android:orientation="vertical">
 
-        <include layout="@layout/item_storage_list"/>
-        <include layout="@layout/item_storage_list"/>
-        <include layout="@layout/item_storage_list"/>
-        <include layout="@layout/item_storage_list"/>
-        <include layout="@layout/item_storage_list"/>
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_storage_song_list"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
 
 
     </LinearLayout>

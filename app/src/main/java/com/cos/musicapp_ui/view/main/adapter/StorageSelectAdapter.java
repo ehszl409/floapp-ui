@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.R;
+import com.cos.musicapp_ui.model.StorageSongRepository;
 import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.model.dto.StorageSongSaveReqDto;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
     private static final String TAG = "StorageSelectAdapter";
     public List<Storage> storageList = new ArrayList<>();
     private Song song;
+    private StorageSongSaveReqDto storageSongSaveReqDto;
+    private StorageSongRepository storageSongRepository;
 
     public StorageSelectAdapter() {};
 
@@ -74,8 +78,23 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
             tvStorageSongCount = itemView.findViewById(R.id.tv_storage_song_count);
 
 
+
             ivStorageViewArt.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                Storage storage = storageList.get(pos);
+
                 Log.d(TAG, "AllSongAdapter로 부터 전달받은 데이터 = " + song);
+                Log.d(TAG, "저장할 보관함 = " + storage);
+
+                storageSongSaveReqDto = new StorageSongSaveReqDto().builder()
+                        .song(song)
+                        .storage(storage)
+                        .build();
+
+                storageSongRepository = new StorageSongRepository();
+                Log.d(TAG, "MyViewHolder: " + storageSongSaveReqDto);
+                storageSongRepository.saveStorageSong(storageSongSaveReqDto);
+
             });
         }
 

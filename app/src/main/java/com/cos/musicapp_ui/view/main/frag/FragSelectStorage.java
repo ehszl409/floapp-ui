@@ -11,23 +11,29 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchFragment;
+import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
 
+import java.util.List;
+
 public class FragSelectStorage extends Fragment implements MainActivity.OnBackPressedListener{
 
+    private static final String TAG = "FragSelectStorage";
     private FragTour fragTour;
     private ImageView ivBack;
     private RecyclerView rvSelectStorage;
     private StorageSelectAdapter storageSelectAdapter;
     private MainActivity mainActivity;
-    private StorageAdapter storageAdapter;
+    private MainActivityViewModel mainActivityViewModel;
 
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
@@ -39,13 +45,19 @@ public class FragSelectStorage extends Fragment implements MainActivity.OnBackPr
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_select_storage, container, false);
 
-        rvSelectStorage = view.findViewById(R.id.rv_select_storage);
+        // **** 보관함에서 스토리지를 만들고 DB에서 다시 값을 받아와야지 id값이 auto increment된 값이 저장됩니다.*****//
+        mainActivity = (MainActivity) container.getContext();
+        mainActivityViewModel = mainActivity.mainViewModel;
+        dataObserver();
+        initData();
+        // **** 보관함에서 스토리지를 만들고 DB에서 다시 값을 받아와야지 id값이 auto increment된 값이 저장됩니다.*****//
 
+
+        rvSelectStorage = view.findViewById(R.id.rv_select_storage);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         rvSelectStorage.setLayoutManager(manager);
-        mainActivity = (MainActivity) container.getContext();
-        storageAdapter = mainActivity.storageAdapter;
-        rvSelectStorage.setAdapter(storageAdapter);
+        storageSelectAdapter = mainActivity.storageSelectAdapter;
+        rvSelectStorage.setAdapter(storageSelectAdapter);
 
 
 
@@ -61,6 +73,21 @@ public class FragSelectStorage extends Fragment implements MainActivity.OnBackPr
         return view;
     }
 
+    public void initData(){
+        mainActivityViewModel.findAllStorage();
+    }
+
+    // 뷰 모델 구독
+    public void dataObserver(){
+        mainActivityViewModel.subStorageData().observe(this, new Observer<List<Storage>>() {
+            @Override
+            public void onChanged(List<Storage> storages) {
+                Log.d(TAG, "onChanged: 뷰 모델에서 변화 감지.");
+                storageSelectAdapter.setStorage(storages);
+            }
+        });
+    }
+    
     @Override
     public void onBack() {
         Log.e("Other", "onBack()");

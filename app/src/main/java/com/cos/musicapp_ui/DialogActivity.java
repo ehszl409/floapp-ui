@@ -33,14 +33,13 @@ public class DialogActivity extends AppCompatActivity {
 
         rvStorageSelectList = findViewById(R.id.rv_storage_select_list);
 
-        List<Storage> storages = new ArrayList<>();
-        storages.add(new Storage(1, "test" ,null, null));
+
 
         mContext = DialogActivity.this;
         LinearLayoutManager manager = new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false);
 
         rvStorageSelectList.setLayoutManager(manager);
-        storageSelectAdapter = new StorageSelectAdapter(storages);
+        storageSelectAdapter = new StorageSelectAdapter();
         rvStorageSelectList.setAdapter(storageSelectAdapter);
 
         mainActivity = new MainActivity();

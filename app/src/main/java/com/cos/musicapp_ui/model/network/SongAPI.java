@@ -3,6 +3,8 @@ package com.cos.musicapp_ui.model.network;
 import com.cos.musicapp_ui.model.dto.ResponseDto;
 import com.cos.musicapp_ui.model.dto.Song;
 import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.model.dto.StorageSong;
+import com.cos.musicapp_ui.model.dto.StorageSongSaveReqDto;
 import com.cos.musicapp_ui.view.common.Constants;
 
 import java.util.List;
@@ -46,6 +48,12 @@ public interface SongAPI {
     @DELETE("storage/{id}")
     Call<Void> storageDelete(@Path("id") Integer id);
 
+    // 보관함에 노래 저장하기
+    @POST("storageSong")
+    Call<Void> storageSongSave(@Body StorageSongSaveReqDto storageSongSaveReqDto);
+
+    @GET("storage/{id}")
+    Call<ResponseDto<List<StorageSong>>> storageSongFindAll(@Path("id") Integer id);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constants.BASEURL)

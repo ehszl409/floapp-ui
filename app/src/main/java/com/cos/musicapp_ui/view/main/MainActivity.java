@@ -17,15 +17,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.cos.musicapp_ui.StorageListFragment;
-import com.cos.musicapp_ui.event.Event1;
 import com.cos.musicapp_ui.model.dto.Storage;
-import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
-import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
-import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
-import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
-import com.cos.musicapp_ui.utils.eventbus.UrlPassenger;
-import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
@@ -39,10 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -99,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dataObserver();
         initData();
 
-        //storageSelectAdapter = new StorageSelectAdapter(storageAdapter.initStorageData());
+
 
 
 
@@ -185,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onChanged(List<Storage> storages) {
                 Log.d(TAG, "onChanged: 뷰 모델에서 변화 감지.");
                 storageAdapter.setStorage(storages);
+                storageSelectAdapter.setStorage(storages);
             }
         });
     }

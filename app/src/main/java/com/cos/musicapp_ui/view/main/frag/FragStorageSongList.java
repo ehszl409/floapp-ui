@@ -1,9 +1,7 @@
-package com.cos.musicapp_ui;
+package com.cos.musicapp_ui.view.main.frag;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,25 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.cos.musicapp_ui.event.Event1;
-import com.cos.musicapp_ui.event.OnItemClick;
-import com.cos.musicapp_ui.model.dto.Storage;
-
-import com.cos.musicapp_ui.utils.eventbus.GlobalBus;
-import com.cos.musicapp_ui.utils.eventbus.StoragePassenger;
+import com.cos.musicapp_ui.MusicPlayListActivity;
+import com.cos.musicapp_ui.MusicPlayerActivity;
+import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
-import com.cos.musicapp_ui.view.main.frag.FragStorage;
 
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-
-public class StorageListFragment extends Fragment implements MainActivity.OnBackPressedListener{
+public class FragStorageSongList extends Fragment implements MainActivity.OnBackPressedListener{
 
     private static final String TAG = "StorageListFragment";
     private FragStorage storageFragment;
@@ -51,8 +39,8 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
-    public static StorageListFragment newInstance() {
-        return new StorageListFragment();
+    public static FragStorageSongList newInstance() {
+        return new FragStorageSongList();
     }
 
     @Nullable
@@ -123,14 +111,14 @@ public class StorageListFragment extends Fragment implements MainActivity.OnBack
 
 
 
-  /* /// Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
+   /// Fragment 호출 시 반드시 호출되는 오버라이드 메소드입니다. => (현재 테스트에는 문제없음)
     @Override
     //혹시 Context 로 안되시는분은 Activity 로 바꿔보시기 바랍니다.
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.e("Other", "onAttach()");
         ((MainActivity) context).setOnBackPressedListener(this);
-    }*/
+    }
 
 
 
