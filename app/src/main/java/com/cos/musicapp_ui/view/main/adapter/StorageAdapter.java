@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.R;
-import com.cos.musicapp_ui.view.main.frag.FragStorageSongList;
+import com.cos.musicapp_ui.view.main.frag.storage.FragStorageSongList;
 import com.cos.musicapp_ui.model.StorageRepository;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
@@ -106,8 +106,6 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.MyViewHo
 
 
                 ((MainActivity)v.getContext()).replace(FragStorageSongList.newInstance());
-
-
 
             });
 

@@ -1,4 +1,4 @@
-package com.cos.musicapp_ui.view.main.frag;
+package com.cos.musicapp_ui.view.main.frag.storage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +25,7 @@ import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 public class FragStorageSongList extends Fragment implements MainActivity.OnBackPressedListener{
 
     private static final String TAG = "StorageListFragment";
-    private FragStorage storageFragment;
+    private FragStorageList storageFragment;
     private ImageView ivPlayList;
     private ConstraintLayout layoutPlayerBtnArea;
     private ImageView ivBack;
@@ -46,7 +46,7 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_storage_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_storage_song_list, container, false);
 
         ivPlayList = view.findViewById(R.id.iv_playlist);
 
@@ -76,7 +76,7 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
 
         ivBack = view.findViewById(R.id.iv_back);
 
-        storageFragment = new FragStorage();
+        storageFragment = new FragStorageList();
 
         // 뒤로가기
         ivBack.setOnClickListener(v -> {

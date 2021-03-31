@@ -19,7 +19,7 @@ import com.cos.musicapp_ui.utils.eventbus.SongIdPassenger;
 import com.cos.musicapp_ui.utils.eventbus.SongPassenger;
 import com.cos.musicapp_ui.view.common.Constants;
 import com.cos.musicapp_ui.view.main.MainActivity;
-import com.cos.musicapp_ui.view.main.frag.FragSelectStorage;
+import com.cos.musicapp_ui.view.main.frag.storage.FragSelectStorage;
 
 
 import org.greenrobot.eventbus.EventBus;

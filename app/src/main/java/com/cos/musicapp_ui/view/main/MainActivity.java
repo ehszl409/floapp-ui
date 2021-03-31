@@ -24,7 +24,7 @@ import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragHome;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchFragment;
-import com.cos.musicapp_ui.view.main.frag.FragStorage;
+import com.cos.musicapp_ui.view.main.frag.storage.FragStorage;
 import com.cos.musicapp_ui.view.main.frag.FragTour;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;

@@ -1,4 +1,4 @@
-package com.cos.musicapp_ui.view.main.frag;
+package com.cos.musicapp_ui.view.main.frag.storage;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.R;
-import com.cos.musicapp_ui.SearchFragment;
 import com.cos.musicapp_ui.model.dto.Storage;
 import com.cos.musicapp_ui.view.main.MainActivity;
 import com.cos.musicapp_ui.view.main.MainActivityViewModel;
-import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
+import com.cos.musicapp_ui.view.main.frag.FragTour;
 
 import java.util.List;
 
