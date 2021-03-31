@@ -27,11 +27,11 @@
         android:text="리스트1 입니다."
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/iv_storage_view_art"
+        app:layout_constraintStart_toEndOf="@+id/iv_view_art"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_storage_view_art"
+        android:id="@+id/iv_view_art"
 
         android:layout_width="80dp"
         android:layout_height="80dp"

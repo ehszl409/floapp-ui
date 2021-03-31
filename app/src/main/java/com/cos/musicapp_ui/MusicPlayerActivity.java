@@ -22,6 +22,14 @@ public class MusicPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
+
+
+
+
+
+
+
+
         ivPlayList = findViewById(R.id.iv_playlist);
         ivBack = findViewById(R.id.iv_back);
 

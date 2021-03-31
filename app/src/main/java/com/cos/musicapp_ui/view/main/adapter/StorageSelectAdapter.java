@@ -73,7 +73,7 @@ public class StorageSelectAdapter extends RecyclerView.Adapter<StorageSelectAdap
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivStorageViewArt = itemView.findViewById(R.id.iv_storage_view_art);
+            ivStorageViewArt = itemView.findViewById(R.id.iv_view_art);
             tvStorageTitle = itemView.findViewById(R.id.tv_storage_title);
             tvStorageSongCount = itemView.findViewById(R.id.tv_storage_song_count);
 

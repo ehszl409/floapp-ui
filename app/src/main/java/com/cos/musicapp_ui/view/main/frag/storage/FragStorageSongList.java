@@ -3,6 +3,7 @@ package com.cos.musicapp_ui.view.main.frag.storage;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,27 +15,40 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.musicapp_ui.MusicPlayListActivity;
 import com.cos.musicapp_ui.MusicPlayerActivity;
 import com.cos.musicapp_ui.R;
+import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.model.dto.StorageSong;
+import com.cos.musicapp_ui.utils.callback.StorageSongCallBack;
 import com.cos.musicapp_ui.view.main.MainActivity;
+import com.cos.musicapp_ui.view.main.MainActivityViewModel;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
+import com.cos.musicapp_ui.view.main.adapter.StorageSongAdapter;
+
+import java.util.List;
 
 
-public class FragStorageSongList extends Fragment implements MainActivity.OnBackPressedListener{
+public class FragStorageSongList extends Fragment implements MainActivity.OnBackPressedListener {
 
     private static final String TAG = "StorageListFragment";
-    private FragStorageList storageFragment;
+    private FragStorage fragStorage;
     private ImageView ivPlayList;
     private ConstraintLayout layoutPlayerBtnArea;
     private ImageView ivBack;
 
-    private StorageAdapter storageAdapter;
-
     private TextView tvStorageListTitle;
 
-    public String storageTitle;
+    private RecyclerView rvStorageSongList;
+    private StorageSongAdapter storageSongAdapter;
+    private MainActivityViewModel mainActivityViewModel;
+    private MainActivity mainActivity;
+
+
 
 
 
@@ -48,13 +62,26 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storage_song_list, container, false);
 
+
         ivPlayList = view.findViewById(R.id.iv_playlist);
+        // 원리
+        // StorageAdapter에서 MainActivity에 있는 뷰 모델을 호출해서 fetchAllSong(보관함 속 노래 데이터 얻기)를 실행합니다.
+        // MainActivity에서 만들어진 뷰 모델을 모두 사용해서 데이터의 변화를 감시할 수 있도록 했습니다.
+        mainActivity  = (MainActivity)container.getContext();
+        mainActivityViewModel = mainActivity.mainViewModel;
+        dataObserver();
 
-
-
+        // 눌러진 보관함의 정보 가져오기.
         tvStorageListTitle = view.findViewById(R.id.tv_storage_list_title);
+        String title = mainActivity.storageAdapter.getStorage().getTitle();
+        tvStorageListTitle.setText(title);
 
 
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        rvStorageSongList = view.findViewById(R.id.rv_storage_song_list);
+        rvStorageSongList.setLayoutManager(manager);
+        storageSongAdapter = new StorageSongAdapter();
+        rvStorageSongList.setAdapter(storageSongAdapter);
 
 
 
@@ -76,7 +103,7 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
 
         ivBack = view.findViewById(R.id.iv_back);
 
-        storageFragment = new FragStorageList();
+        fragStorage = new FragStorage();
 
         // 뒤로가기
         ivBack.setOnClickListener(v -> {
@@ -87,6 +114,20 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
 
         return view;
     } // end of onCreateView
+
+
+
+
+    // 뷰 모델 구독
+    public void dataObserver(){
+        mainActivityViewModel.subStorageSongData().observe(this, new Observer<List<StorageSong>>() {
+            @Override
+            public void onChanged(List<StorageSong> storageSongs) {
+                storageSongAdapter.setStorageSong(storageSongs);
+            }
+        });
+    }
+
 
 
 
@@ -103,7 +144,7 @@ public class FragStorageSongList extends Fragment implements MainActivity.OnBack
 
         // searchFragment = 뒤로가기 후 목적지 fragment
         // 변경점 : getFragmentManager(X) => getSupportFragmentManager(최신)
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, storageFragment).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragStorage).commit();
         // Activity 에서도 뭔가 처리하고 싶은 내용이 있다면 하단 문장처럼 호출해주면 됩니다.
         // activity.onBackPressed();
     }

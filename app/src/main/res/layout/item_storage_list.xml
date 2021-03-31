@@ -29,7 +29,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="7dp"
         android:text="멜로디"
-        app:layout_constraintStart_toEndOf="@+id/iv_storage_view_art"
+        app:layout_constraintStart_toEndOf="@+id/iv_view_art"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -54,7 +54,7 @@
         app:tint="@color/white" />
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_storage_view_art"
+        android:id="@+id/iv_view_art"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ashisland_melody"

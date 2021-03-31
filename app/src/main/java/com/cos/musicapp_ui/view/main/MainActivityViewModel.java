@@ -107,6 +107,11 @@ public class MainActivityViewModel extends ViewModel {
     // *********** 보관함 관련 코드 **********
     public void findAllStorage() {storageRepository.fetchAllStorage();}
 
+    // 보관함 노래 관련 코드
+    public  void findAllStorageSong(int id){
+        storageSongRepository.fetchFindAll(id);
+    }
+
     public ServiceConnection getServiceConnection() {
         return connection;
     }

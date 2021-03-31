@@ -52,7 +52,8 @@ public interface SongAPI {
     @POST("storageSong")
     Call<Void> storageSongSave(@Body StorageSongSaveReqDto storageSongSaveReqDto);
 
-    @GET("storage/{id}")
+    // 보관함 노래 찾기
+    @GET("storageSong/{id}")
     Call<ResponseDto<List<StorageSong>>> storageSongFindAll(@Path("id") Integer id);
 
     Retrofit retrofit = new Retrofit.Builder()

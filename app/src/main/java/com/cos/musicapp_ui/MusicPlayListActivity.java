@@ -29,7 +29,7 @@ public class MusicPlayListActivity extends AppCompatActivity {
             onBackPressed();
         });
 
-        rivMusic = findViewById(R.id.iv_storage_view_art);
+        rivMusic = findViewById(R.id.iv_view_art);
 
         rivMusic.setOnClickListener(v -> {
             Log.d(TAG, "riv_song 클릭됬습니다.");

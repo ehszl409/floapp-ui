@@ -68,6 +68,10 @@ public class FragStorageList extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         rvStorage.setLayoutManager(manager);
         storageAdapter = mainActivity.storageAdapter;
+
+        // 어탭터 한테 메인 액티비티 컨택스트를 넘겨줍니다.
+        // 이유는 어댑터에서 메인 액티비티에 있는 뷰 모델을 호출 하기 위해서 입니다.
+        storageAdapter.setMainActivity((MainActivity)getActivity());
         rvStorage.setAdapter(storageAdapter);
 
         // ************* 보관함 다이얼 띄우기 ******************//

@@ -18,9 +18,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.cos.musicapp_ui.model.dto.Storage;
+import com.cos.musicapp_ui.model.dto.StorageSong;
 import com.cos.musicapp_ui.view.main.adapter.AllSongAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageAdapter;
 import com.cos.musicapp_ui.view.main.adapter.StorageSelectAdapter;
+import com.cos.musicapp_ui.view.main.adapter.StorageSongAdapter;
 import com.cos.musicapp_ui.view.main.frag.FragHome;
 import com.cos.musicapp_ui.R;
 import com.cos.musicapp_ui.SearchFragment;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 목적 : 프래그먼트를 직접 띄우지 않아도 프래그먼트속 리사이클러뷰 데이터를 사용하기 위해서
     public StorageAdapter storageAdapter;
     public StorageSelectAdapter storageSelectAdapter;
+
 
 
 
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // ****** 보관함 리스트 ******
         storageAdapter = new StorageAdapter();
         storageSelectAdapter = new StorageSelectAdapter();
+
         // ****** 보관함 리스트 ******
     }
 
@@ -177,8 +181,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 storageSelectAdapter.setStorage(storages);
             }
         });
+
     }
     //*********** 보관함 데이터 가져오기 **************
+
 
 
 

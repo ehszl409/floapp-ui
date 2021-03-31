@@ -9,6 +9,8 @@ import com.cos.musicapp_ui.model.dto.ResponseDto;
 import com.cos.musicapp_ui.model.dto.StorageSong;
 import com.cos.musicapp_ui.model.dto.StorageSongSaveReqDto;
 import com.cos.musicapp_ui.model.network.SongAPI;
+import com.cos.musicapp_ui.utils.callback.StorageSongCallBack;
+import com.cos.musicapp_ui.view.main.adapter.StorageSongAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class StorageSongRepository {
 
     private MutableLiveData<List<StorageSong>> mtStorageSongList;
 
+
     public StorageSongRepository() {
         mtStorageSongList = new MutableLiveData<>();
     }
@@ -30,7 +33,7 @@ public class StorageSongRepository {
         return mtStorageSongList;
     }
     
-    public void fetchFindAll(int id){
+    public void fetchFindAll (int id){
         Call<ResponseDto<List<StorageSong>>> call = SongAPI.retrofit.create(SongAPI.class).storageSongFindAll(id);
         
         call.enqueue(new Callback<ResponseDto<List<StorageSong>>>() {
